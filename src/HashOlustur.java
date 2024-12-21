@@ -1,7 +1,7 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-abstract public class Sifreleme {
+abstract public class HashOlustur {
     public static String md5HashOlustur(String girdi) {
         try {
             // MessageDigest'ten md5 alalım
