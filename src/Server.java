@@ -42,14 +42,7 @@ public class Server {
     }
 
     //Sadece tek kullancıya gonderi gondermek için metod da lazım
-    public static void monocast(Response message, ClientHandler client){
-        try {
-            client.sendMessage(message);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
-    }
 
     //Bağlantıları ayarlamak için iç sınıf oluşturalım
     protected static class ClientHandler implements Runnable {
@@ -75,14 +68,29 @@ public class Server {
         @Override
         public void run() {
             try {
-
                 //İlk önce kullancının girip girmemiş olduğundan emin olalım
                 int loginOlduMu = 0;
                 while (loginOlduMu == 0){
-                    String inputLine =  (String) in.readObject();
-                    User user = SifrelemeServer.userCevir(inputLine);
-                    VeriTabanIslemler.girisYap(user);
+                    try{
+                        String inputLine =  (String) in.readObject();
+                        User user = SifrelemeServer.userCevir(inputLine);
+                        if(user.varMi)
+                            loginOlduMu = VeriTabanIslemler.girisYap(user);
+                        else
+                            VeriTabanIslemler.kullanciOlustur(user);
+                        if (loginOlduMu==0){
+                            Response response = new Response(2,null);
+                            response.setResponseCode(20);
+                            sendMessage(response);
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
+
+
                 String inputLine =  (String) in.readObject();
                 Gonderi istek = SifrelemeServer.cevir(inputLine);
                 RequestSolver istekCozucu = (RequestSolver)istek;
@@ -91,12 +99,12 @@ public class Server {
                 // İstemciden gönderi almayı devam et
                 while (istekCozucu != null) {
                     // Mesaj varsa bunu tum kullancılara gonderelim
-                    if (istekCozucu.requestType == 1 & istekCozucu.mesaj != null)
+                    if (istekCozucu.requestType == 3 & istekCozucu.mesaj != null)
                         broadcast(donus, this);
 
-                    if (istekCozucu.requestType != 1){
+                    if (istekCozucu.requestType != 3){
                         donus.setResponseCode(istekCozucu.islemYap());
-                        monocast(donus,this);
+                        sendMessage(donus);
                     }
                 }
 
