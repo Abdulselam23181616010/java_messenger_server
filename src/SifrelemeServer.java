@@ -4,7 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class SifrelemeServer {
-    private static final String SECRET_KEY = "your-base64-encoded-key-here";
+    private static final String SECRET_KEY = "5ROIfv7Sf0nK9RfeqIkhtC6378OiR5E0VyTnjmXejY0=";
     public static String sifrele(Response response){
         try{
             //Gonderimizi bayt dizisine çevirelim

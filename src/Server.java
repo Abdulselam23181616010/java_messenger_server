@@ -70,52 +70,50 @@ public class Server {
             try {
                 //İlk önce kullancının girip girmemiş olduğundan emin olalım
                 int loginOlduMu = 0;
-                while (loginOlduMu == 0){
-                    try{
-                        String inputLine =  (String) in.readObject();
-                        User user = SifrelemeServer.userCevir(inputLine);
-                        if(user.varMi)
-                            loginOlduMu = VeriTabanIslemler.girisYap(user);
-                        else
-                            VeriTabanIslemler.kullanciOlustur(user);
-                        if (loginOlduMu==0){
-                            Response response = new Response(2,null);
-                            response.setResponseCode(20);
-                            sendMessage(response);
+                try{
+                    String inputLine = (String) in.readObject();
+                    User user = SifrelemeServer.userCevir(inputLine);
+                    if(user.varMi)
+                        loginOlduMu = VeriTabanIslemler.girisYap(user);
+                    else
+                        VeriTabanIslemler.kullanciOlustur(user);
+                    if (loginOlduMu==0){
+                        Response response = new Response(2,null);
+                        response.setResponseCode(20);
+                        sendMessage(response);
+                    }
+                    else{
+                        String inputLine1 = (String) in.readObject();
+                        Gonderi istek = SifrelemeServer.cevir(inputLine1);
+                        RequestSolver istekCozucu = (RequestSolver)istek;
+                        Response donus = (Response)istek;
+
+                        // İstemciden gönderi almayı devam et
+                        while (istekCozucu != null) {
+                            // Mesaj varsa bunu tum kullancılara gonderelim
+                            if (istekCozucu.requestType == 3 & istekCozucu.mesaj != null)
+                                broadcast(donus, this);
+
+                            if (istekCozucu.requestType != 3){
+                                donus.setResponseCode(istekCozucu.islemYap());
+                                sendMessage(donus);
+                            }
                         }
 
-                    }catch (Exception e){
-                        e.printStackTrace();
                     }
 
+                }catch (Exception e){
+                    e.printStackTrace();
+                    // Remove the client handler from the list
+                    clients.remove(this);
+
+                    // Close the input and output streams and the client socket
+                    in.close();
+                    out.close();
+                    clientSocket.close();
                 }
 
-
-                String inputLine =  (String) in.readObject();
-                Gonderi istek = SifrelemeServer.cevir(inputLine);
-                RequestSolver istekCozucu = (RequestSolver)istek;
-                Response donus = (Response)istek;
-
-                // İstemciden gönderi almayı devam et
-                while (istekCozucu != null) {
-                    // Mesaj varsa bunu tum kullancılara gonderelim
-                    if (istekCozucu.requestType == 3 & istekCozucu.mesaj != null)
-                        broadcast(donus, this);
-
-                    if (istekCozucu.requestType != 3){
-                        donus.setResponseCode(istekCozucu.islemYap());
-                        sendMessage(donus);
-                    }
-                }
-
-                // Remove the client handler from the list
-                clients.remove(this);
-
-                // Close the input and output streams and the client socket
-                in.close();
-                out.close();
-                clientSocket.close();
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException  e) {
                 e.printStackTrace();
             }
         }

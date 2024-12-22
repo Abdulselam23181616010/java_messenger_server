@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="girisYap ve kullanciOlustur parametreli usera donusturuldu, login page için dongu oluşturuldu">
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RequestSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RequestSolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gonderi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gonderi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SifrelemeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SifrelemeServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,20 +48,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rist0/IdeaProjects/NYP/messenger&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/rist0/IdeaProjects/NYP/messenger/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Debug",
+    "Application.Server.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/rist0/IdeaProjects/NYP/messenger_client",
+    "onboarding.tips.debug.path": "C:/Users/rist0/IdeaProjects/NYP/messenger/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
@@ -83,12 +84,21 @@
       <option name="project" value="LOCAL" />
       <updated>1734801247893</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur">
+      <option name="closed" value="true" />
+      <created>1734810871502</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734810871502</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="girisYap ve kullanciOlustur parametreli usera donusturuldu, login page için dongu oluşturuldu" />
-    <option name="LAST_COMMIT_MESSAGE" value="girisYap ve kullanciOlustur parametreli usera donusturuldu, login page için dongu oluşturuldu" />
+    <MESSAGE value="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -100,6 +110,14 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="com.mysql.cj.exceptions.CJException" package="com.mysql.cj.exceptions" />
           <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.security.InvalidKeyException" package="java.security" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.StreamCorruptedException" package="java.io" />
+          <option name="timeStamp" value="4" />
         </breakpoint>
       </breakpoints>
       <default-breakpoints>

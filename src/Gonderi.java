@@ -1,4 +1,6 @@
-public class Gonderi {
+import java.io.Serializable;
+
+public class Gonderi implements Serializable {
     protected int requestType;
     protected Mesaj mesaj;
 
