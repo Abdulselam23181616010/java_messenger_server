@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur">
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="uğdated server user classes added secure key for now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gonderi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gonderi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mesaj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mesaj.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SifrelemeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SifrelemeServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VeriTabanIslemler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VeriTabanIslemler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,19 +25,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Abdulselam23181616010"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Abdulselam23181616010&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Abdulselam23181616010/messenger.git",
-    "accountId": "3752d028-ea9e-44e4-91b2-d8d83e701955"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Abdulselam23181616010/messenger.git&quot;,
+    &quot;accountId&quot;: &quot;3752d028-ea9e-44e4-91b2-d8d83e701955&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -50,7 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Application.Server.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -92,13 +92,33 @@
       <option name="project" value="LOCAL" />
       <updated>1734810871502</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="uğdated server user classes added secure key for now">
+      <option name="closed" value="true" />
+      <created>1734826276669</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734826276669</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="girisYap ve kullanciOlustur parametreli usera donusturuldu, login page için dongu oluşturuldu" />
     <MESSAGE value="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur" />
-    <option name="LAST_COMMIT_MESSAGE" value="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur" />
+    <MESSAGE value="uğdated server user classes added secure key for now" />
+    <option name="LAST_COMMIT_MESSAGE" value="uğdated server user classes added secure key for now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

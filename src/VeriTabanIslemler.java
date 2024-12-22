@@ -86,6 +86,7 @@ public class VeriTabanIslemler {
 
     }
 
+    //Gecmişi yuklemek için Veritabandan tum mesajları isteyiciye göndereceğiz
     public static List<Mesaj> getAllMessages() {
         List<Mesaj> messages = new ArrayList<>();
 

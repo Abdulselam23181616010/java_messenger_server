@@ -13,6 +13,20 @@ public class Mesaj {
         this.timestamp = timestamp;
     }
 
+    public Mesaj(String gonderici, String message){
+        this.gonderici = gonderici;
+        this.message = message;
+
+    }
+
+    public String getGonderici() {
+        return gonderici;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
 
 
 

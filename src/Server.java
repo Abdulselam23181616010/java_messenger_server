@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Server {
@@ -77,12 +78,7 @@ public class Server {
                         loginOlduMu = VeriTabanIslemler.girisYap(user);
                     else
                         VeriTabanIslemler.kullanciOlustur(user);
-                    if (loginOlduMu==0){
-                        Response response = new Response(2,null);
-                        response.setResponseCode(20);
-                        sendMessage(response);
-                    }
-                    else{
+                    if (loginOlduMu==1){
                         String inputLine1 = (String) in.readObject();
                         Gonderi istek = SifrelemeServer.cevir(inputLine1);
                         RequestSolver istekCozucu = (RequestSolver)istek;
@@ -94,12 +90,23 @@ public class Server {
                             if (istekCozucu.requestType == 3 & istekCozucu.mesaj != null)
                                 broadcast(donus, this);
 
-                            if (istekCozucu.requestType != 3){
-                                donus.setResponseCode(istekCozucu.islemYap());
-                                sendMessage(donus);
+                            //Geçmiş yuklemek isteniyorsa geçmişi diziye saklayıp tek tek gönderelim
+                            if (istekCozucu.requestType == 4){
+                                List<Mesaj> mesajlar = VeriTabanIslemler.getAllMessages();
+                                for (Mesaj mesaj: mesajlar){
+                                    Response response = new Response(4,mesaj);
+                                    response.setResponseCode(31);
+                                    sendMessage(response);
+                                }
+
                             }
                         }
 
+                    }
+                    else{
+                        Response response = new Response(2,null);
+                        response.setResponseCode(20);
+                        sendMessage(response);
                     }
 
                 }catch (Exception e){
@@ -125,4 +132,3 @@ public class Server {
 
     }
 }
-
