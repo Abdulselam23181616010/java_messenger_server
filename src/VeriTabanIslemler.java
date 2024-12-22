@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,10 +90,14 @@ public class VeriTabanIslemler {
             PreparedStatement preparedStatementInsert;
             String sql =  "INSERT INTO messages (gonderici, mesaj,time) VALUES (?, ?, ?) ";
 
+            LocalDateTime currentTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = currentTime.format(formatter);
+
             preparedStatementInsert = connection.prepareStatement(sql);
             preparedStatementInsert.setString(1, mesaj.getGonderici());
             preparedStatementInsert.setString(2, mesaj.getMesaj());
-            preparedStatementInsert.setObject(3, LocalDateTime.now());
+            preparedStatementInsert.setObject(3, formattedDateTime);
             int rowsAffected = preparedStatementInsert.executeUpdate();
             System.out.println("mesaj oluşturuldu");
 
