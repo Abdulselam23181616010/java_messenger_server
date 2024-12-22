@@ -68,59 +68,54 @@ public class Server {
         // Kullancı ile iletişim için run() metodu
         @Override
         public void run() {
-            int loginOlduMu = 0;
                 try {
+                    int loginOlduMu = 0;
+                    String inputLine;
+                    while ((inputLine = (String)in.readObject()) != null)
                     try{
                         //İlk önce kullancının girip girmemiş olduğundan emin olalım
-                        if (loginOlduMu!=0){
-                            String inputLine1 = (String) in.readObject();
-                            Gonderi istek = SifrelemeServer.cevir(inputLine1);
+                        if (loginOlduMu !=0 ){
+                            Gonderi istek = SifrelemeServer.cevir(inputLine);
                             System.out.println(istek.getMesaj().getMesaj());
 
-                            // İstemciden gönderi almayı devam et
-                            while (istek != null) {
-                                // Mesaj varsa bunu tum kullancılara gonderelim
-                                if (istek.getRequestType() == 3 & istek.getMesaj() != null){
-                                    Mesaj mesaj = VeriTabanIslemler.mesajEkle(istek.getMesaj());
-                                    istek.setMesaj(mesaj);
-                                    istek.setResponseCode(31);
-                                    broadcast(istek, this);
+                            // Mesaj varsa bunu tum kullancılara gonderelim
+                            if (istek.getRequestType() == 3 & istek.getMesaj() != null){
+                                Mesaj mesaj = VeriTabanIslemler.mesajEkle(istek.getMesaj());
+                                istek.setMesaj(mesaj);
+                                istek.setResponseCode(31);
+                                broadcast(istek, this);
 
-                                }
+                            }
 
-                                //Geçmiş yuklemek isteniyorsa geçmişi diziye saklayıp tek tek gönderelim
-                                if (istek.getRequestType() == 4){
-                                    List<Mesaj> mesajlar = VeriTabanIslemler.getAllMessages();
-                                    for (Mesaj mesaj: mesajlar){
-                                        Gonderi gonderi = new Gonderi(4,mesaj);
-                                        gonderi.setResponseCode(31);
-                                        sendMessage(gonderi);
-                                    }
-
+                            //Geçmiş yuklemek isteniyorsa geçmişi diziye saklayıp tek tek gönderelim
+                            if (istek.getRequestType() == 4){
+                                List<Mesaj> mesajlar = VeriTabanIslemler.getAllMessages();
+                                for (Mesaj mesaj: mesajlar){
+                                    Gonderi gonderi = new Gonderi(4,mesaj);
+                                    gonderi.setResponseCode(31);
+                                    sendMessage(gonderi);
                                 }
 
                             }
 
                         }
                         else{
-                            String inputLine = (String) in.readObject();
                             User user = SifrelemeServer.userCevir(inputLine);
 
                             //İsteyiciden gelen Kullancı varMı bilgisine göre kullancı ya üye olur ya giriş yapar
                             if(user.varMi){
-                                loginOlduMu = VeriTabanIslemler.girisYap(user);
-                                System.out.println(loginOlduMu);
+                                Gonderi gonderi = new Gonderi(1,null);
+                                gonderi.setResponseCode(VeriTabanIslemler.girisYap(user));
+                                System.out.println("oldu");
+                                sendMessage(gonderi);
 
-                                //Giriş yapıldıysa olumlu response gönderelim
-                                if(loginOlduMu==11) {
-                                    Gonderi gonderi = new Gonderi(1,null);
-                                    gonderi.setResponseCode(11);
-                                    sendMessage(gonderi);
-                                }
                             }
-                            else
-                                VeriTabanIslemler.kullanciOlustur(user);
+                            else {
+                                Gonderi gonderi = new Gonderi(2,null);
+                                gonderi.setResponseCode(VeriTabanIslemler.kullanciOlustur(user));
+                                sendMessage(gonderi);
 
+                            }
 
                         }
                     }catch (Exception e){
@@ -134,7 +129,7 @@ public class Server {
                         clientSocket.close();
                     }
 
-                } catch (IOException  e) {
+                } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
@@ -145,7 +140,7 @@ public class Server {
                 try {
                     String responseString = SifrelemeServer.sifrele(gonderi);
                     out.writeObject(responseString);
-                    out.flush();
+                    out.reset();
 
                 } catch (Exception e) {
                     e.printStackTrace();

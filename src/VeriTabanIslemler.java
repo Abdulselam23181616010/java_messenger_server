@@ -76,7 +76,7 @@ public class VeriTabanIslemler {
 
         } catch (Exception e){
             e.printStackTrace();
-            return 0;
+            return 10;
 
         }
 
