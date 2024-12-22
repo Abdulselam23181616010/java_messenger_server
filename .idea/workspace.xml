@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="kalan sınıflara yorum satırlar eklendi">
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="mesajda getter eklendi">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mesaj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mesaj.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messenger.iml" beforeDir="false" afterPath="$PROJECT_DIR$/messenger_server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +70,20 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="messenger" />
+      <module name="messenger_server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="messenger_server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="messenger_server" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -216,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734897397593</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="mesajda getter eklendi">
+      <option name="closed" value="true" />
+      <created>1734898971474</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1734898971474</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,7 +269,8 @@
     <MESSAGE value="Server sınıfında yorum satırlar güncellendi" />
     <MESSAGE value="Mesaj sınıfına yorum satırlar eklendi" />
     <MESSAGE value="kalan sınıflara yorum satırlar eklendi" />
-    <option name="LAST_COMMIT_MESSAGE" value="kalan sınıflara yorum satırlar eklendi" />
+    <MESSAGE value="mesajda getter eklendi" />
+    <option name="LAST_COMMIT_MESSAGE" value="mesajda getter eklendi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

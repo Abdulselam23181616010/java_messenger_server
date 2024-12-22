@@ -80,7 +80,6 @@ public class Server {
                         //İlk önce kullancının girip girmemiş olduğundan emin olalım
                         if (loginOlduMu == 11 ){
                             Gonderi istek = SifrelemeServer.cevir(inputLine);
-                            System.out.println(istek.getMesaj().getMesaj());
 
                             // Mesaj varsa bunu tum kullancılara gonderelim
                             if (istek.getRequestType() == 3 & istek.getMesaj() != null){
@@ -112,7 +111,6 @@ public class Server {
                             if(user.getVarMi()){
                                 Gonderi gonderi = new Gonderi(1,null);
                                 gonderi.setResponseCode(VeriTabanIslemler.girisYap(user));
-                                System.out.println("oldu");
                                 sendMessage(gonderi);
                                 loginOlduMu = gonderi.getResponseCode();
 
