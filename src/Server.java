@@ -113,9 +113,9 @@ public class Server {
 
                                 //Giriş yapıldıysa olumlu response gönderelim
                                 if(loginOlduMu==11) {
-                                    Response response = new Response(1,null);
-                                    response.setResponseCode(11);
-                                    sendMessage(response);
+                                    Gonderi gonderi = new Gonderi(1,null);
+                                    gonderi.setResponseCode(11);
+                                    sendMessage(gonderi);
                                 }
                             }
                             else
@@ -141,9 +141,16 @@ public class Server {
 
 
         public void sendMessage(Gonderi gonderi) throws IOException {
-            String responseString = SifrelemeServer.sifrele(gonderi);
-            out.writeObject(responseString);
+            synchronized (this) {
+                try {
+                    String responseString = SifrelemeServer.sifrele(gonderi);
+                    out.writeObject(responseString);
+                    out.flush();
 
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
