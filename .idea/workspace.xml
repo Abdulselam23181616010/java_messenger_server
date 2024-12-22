@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi">
-      <change afterPath="$PROJECT_DIR$/src/ConfigHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/git.ignore" afterDir="false" />
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="SifrelenmeServer sınıfın yorum satırları düzeltildi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SifrelemeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SifrelemeServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VeriTabanIslemler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VeriTabanIslemler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +176,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734877774960</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="config file desteği sunuldu sifrelenmeServer ve VeriTabanIslemler sınıfları ona göre ayarlandı. User sınıfın orum satırları duzeltildi">
+      <option name="closed" value="true" />
+      <created>1734878810731</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1734878810731</updated>
+    </task>
+    <task id="LOCAL-00013" summary="SifrelenmeServer sınıfın yorum satırları düzeltildi">
+      <option name="closed" value="true" />
+      <created>1734879107179</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1734879107179</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,7 +217,9 @@
     <MESSAGE value="username ve sifre null hatası duzeltildi&#10;usera encapsulation uygulandı" />
     <MESSAGE value="formated date time eklendi" />
     <MESSAGE value="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi" />
-    <option name="LAST_COMMIT_MESSAGE" value="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi" />
+    <MESSAGE value="config file desteği sunuldu sifrelenmeServer ve VeriTabanIslemler sınıfları ona göre ayarlandı. User sınıfın orum satırları duzeltildi" />
+    <MESSAGE value="SifrelenmeServer sınıfın yorum satırları düzeltildi" />
+    <option name="LAST_COMMIT_MESSAGE" value="SifrelenmeServer sınıfın yorum satırları düzeltildi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

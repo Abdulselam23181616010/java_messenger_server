@@ -3,13 +3,19 @@ import java.net.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+
+//Kullancıya bağlanmak ondan istek alıp, çözüp ve dönüş işlemleri gerçekleşecek sınıftır
 public class Server {
+    //Sunucumuzun hangi porta çalışacağını belirtelim
     private static final int PORT = 1234;
+
+    //Clients adında bir dizi oluşturalım burda sunucunun kullancılarla kurduğu bağlantıları saklayacağız
     private static CopyOnWriteArrayList<ClientHandler> clients = new CopyOnWriteArrayList<>();
 
-
+    //Burdaki metodla sunucumuzun çalışmasını sağlayacağız
     public static void serveriCalistir(){
         try {
+            //Socketimizi oluşturalım
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Server is running and waiting for connections..");
 
@@ -29,7 +35,7 @@ public class Server {
     }
 
 
-    // Tum kullancılara mesajı göndermek için metod oluşturalım
+    // Bir kullancı mesaj atınca bu mesajın başka kullancılara mesaj gelmesini sağlayan metodu yaazalım
     public static void broadcast(Gonderi gonderi, ClientHandler sender) {
         for (ClientHandler client : clients) {
             if (client != sender) {
@@ -41,9 +47,6 @@ public class Server {
             }
         }
     }
-
-    //Sadece tek kullancıya gonderi gondermek için metod da lazım
-
 
     //Bağlantıları ayarlamak için iç sınıf oluşturalım
     protected static class ClientHandler implements Runnable {
@@ -65,12 +68,13 @@ public class Server {
             }
         }
 
-        // Kullancı ile iletişim için run() metodu
+        // Kullancı ile iletişim için Runnable interfaceten run() metodu
         @Override
         public void run() {
                 try {
                     int loginOlduMu = 0;
                     String inputLine;
+                    //istekler geldiği süreçte bu döngünün çalışmasını isteyeceğiz
                     while ((inputLine = (String)in.readObject()) != null)
                     try{
                         //İlk önce kullancının girip girmemiş olduğundan emin olalım
@@ -99,7 +103,9 @@ public class Server {
                             }
 
                         }
+                        //Kullancı giriş yapmadıysa aşağıdaki işlemlerden devam edelim
                         else{
+                            //Kullancıdan gelen user sınıfında kullancı bilgileri alalım
                             User user = SifrelemeServer.userCevir(inputLine);
 
                             //İsteyiciden gelen Kullancı varMı bilgisine göre kullancı ya üye olur ya giriş yapar
@@ -121,10 +127,10 @@ public class Server {
                         }
                     }catch (Exception e){
                         e.printStackTrace();
-                        // Remove the client handler from the list
+                        // Beklenmedik hatada kullancıyı diziden atalım
                         clients.remove(this);
 
-                        // Close the input and output streams and the client socket
+                        // Input output ve socketi de kapatalım
                         in.close();
                         out.close();
                         clientSocket.close();
@@ -136,8 +142,8 @@ public class Server {
             }
 
 
+        //Sunucudan istemciye gönderi göndermek için metod oluşturup yukarıdaki kodlarda bunu kullanalım
         public void sendMessage(Gonderi gonderi) throws IOException {
-            synchronized (this) {
                 try {
                     String responseString = SifrelemeServer.sifrele(gonderi);
                     out.writeObject(responseString);
@@ -146,8 +152,7 @@ public class Server {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-        }
 
+        }
     }
 }
