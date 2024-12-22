@@ -6,6 +6,8 @@ import java.util.List;
 
 //VeriTabanConnector adındaki sınıf sunucumuzun veritabanla iletişime geçmesini sağlar
 public class VeriTabanIslemler {
+
+    //Diğer metodlarda kullanacağımız private bir metodtur. Bununla veri tabana bağlamamızı sağlarız
     private static Connection veritabanaBaglan() throws SQLException {
         // Alttaki değerlerle sql kutuphanesindn aldığımız Connection sınıfından nesneyle veritabana bağlanalım
         String url = "jdbc:mysql://localhost:3306/messenger?autoReconnect=true&useSSL=false";
@@ -28,13 +30,12 @@ public class VeriTabanIslemler {
             PreparedStatement preparedStatement;
             String sql = "INSERT INTO users (username, isim, soyisim, sifreHash) VALUES (?, ?, ?, ? )";
 
-            // Log the connection state before query execution
-            System.out.println("Preparing to execute query with connection: " + (connection.isClosed() ? "Closed" : "Open"));
             preparedStatement = connection.prepareStatement(sql);
 
             //Sifreyi guvenlik nedenle hash şeklinde saklayalım
             String sifreHash = HashOlustur.md5HashOlustur(user.getSifre());
 
+            //Degerleri querymize girerim
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getIsim());
             preparedStatement.setString(3, user.getSoyisim());
@@ -55,20 +56,26 @@ public class VeriTabanIslemler {
         }
     }
 
+    //Giriş yapmak için bir metodtur. Gelen kullancı bilfgileri veri setindeki bilgilerle karşılaşır
     public static int girisYap(User user) {
         try(Connection connection = veritabanaBaglan()){
+            //Giriş boşsa griş yapmasını istemediğimiz için if-statement ekleuyelim
             if(user.getUsername()=="" | user.getSifre()=="")
                 return 10;
+
+            //SQL injection'dan korunmak için PreparedStatement kullanalım
             PreparedStatement preparedStatement;
             String sql = "SELECT sifreHash FROM users WHERE username = ?";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,user.getUsername());
 
+            //İşlemden çıkan verileri okuyalım
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             String veridekiHash = rs.getString("sifreHash");
 
+            //Şifre hashlarını kontrol edelim beziyorsa giriş yapmasına izin verelim
             String sifreHash = HashOlustur.md5HashOlustur(user.getSifre());
             if (veridekiHash.equals(sifreHash)){
                 System.out.println("Giris Basarili");
@@ -85,11 +92,15 @@ public class VeriTabanIslemler {
 
     }
 
+    //Uygulamanın ana kısımlardan biri. Gelen measajları veri tabanımızda saklayalım sonra dönüş olarak vereceğiz ve broadcast edeceğiz
     public static Mesaj mesajEkle(Mesaj mesaj){
         try(Connection connection = veritabanaBaglan()){
+
+            //SQL injection'dan korunmak için PreparedStatement kullanalım
             PreparedStatement preparedStatementInsert;
             String sql =  "INSERT INTO messages (gonderici, mesaj,time) VALUES (?, ?, ?) ";
 
+            //sutunlerden biri olan time - zaman değerini oluşturmak için LocalDateTime formatlayıp kullanalım.
             LocalDateTime currentTime = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDateTime = currentTime.format(formatter);
@@ -99,10 +110,11 @@ public class VeriTabanIslemler {
             preparedStatementInsert.setString(2, mesaj.getMesaj());
             preparedStatementInsert.setObject(3, formattedDateTime);
             int rowsAffected = preparedStatementInsert.executeUpdate();
-            System.out.println("mesaj oluşturuldu");
 
+            //Şİmdi mesajı dönmeek için veritabandan mesajı çekeceğiz. SQL injection'dan korunmak için PreparedStatement kullanalım
             PreparedStatement preparedStatementSelect;
             String sql1 = "SELECT id, gonderici, mesaj, time FROM messages WHERE gonderici = ? AND mesaj = ? ORDER BY time DESC LIMIT 1";
+
 
             preparedStatementSelect = connection.prepareStatement(sql1);
             preparedStatementSelect.setString(1, mesaj.getGonderici());
@@ -110,7 +122,7 @@ public class VeriTabanIslemler {
             ResultSet rs = preparedStatementSelect.executeQuery();
 
             rs.next();
-
+            //burdaki değerlerle mesaj nesnesini oluşsturup döndüreceğiz
             int id = rs.getInt("id");
             String gonderici = rs.getString("gonderici");
             String string = rs.getString("mesaj");
@@ -126,28 +138,28 @@ public class VeriTabanIslemler {
 
     //Gecmişi yuklemek için Veritabandan tum mesajları isteyiciye göndereceğiz
     public static List<Mesaj> getAllMessages() {
+        //Geçmişteki mesajları dizide saklayalım
         List<Mesaj> messages = new ArrayList<>();
 
-        String query = "SELECT * FROM messages";
-
+        String sql = "SELECT * FROM messages";
         try (Connection connection = veritabanaBaglan();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
+             ResultSet resultSet = statement.executeQuery(sql)) {
 
+            //Döngü ile mesaj nesneleri oluşturup diziye ekleyelim
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String gonderici = resultSet.getString("gonderici");
                 String mesaj = resultSet.getString("mesaj");
                 LocalDateTime time = resultSet.getObject("time", LocalDateTime.class);
-
-                // Create a Message object and add it to the list
                 messages.add(new Mesaj(id, gonderici, mesaj, time));
+
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        //son olarak da diziyi dödürelim
         return messages;
     }
 

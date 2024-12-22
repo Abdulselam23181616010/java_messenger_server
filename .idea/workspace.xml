@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="username ve sifre null hatası duzeltildi&#10;usera encapsulation uygulandı">
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="formated date time eklendi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VeriTabanIslemler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VeriTabanIslemler.java" afterDir="false" />
     </list>
@@ -160,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734873113384</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="formated date time eklendi">
+      <option name="closed" value="true" />
+      <created>1734873952423</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734873952423</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,7 +191,8 @@
     <MESSAGE value="deleted unnececary classes" />
     <MESSAGE value="looplar düzeltildi" />
     <MESSAGE value="username ve sifre null hatası duzeltildi&#10;usera encapsulation uygulandı" />
-    <option name="LAST_COMMIT_MESSAGE" value="username ve sifre null hatası duzeltildi&#10;usera encapsulation uygulandı" />
+    <MESSAGE value="formated date time eklendi" />
+    <option name="LAST_COMMIT_MESSAGE" value="formated date time eklendi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
