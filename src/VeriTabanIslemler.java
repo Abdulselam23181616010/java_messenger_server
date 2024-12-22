@@ -32,11 +32,11 @@ public class VeriTabanIslemler {
             preparedStatement = connection.prepareStatement(sql);
 
             //Sifreyi guvenlik nedenle hash şeklinde saklayalım
-            String sifreHash = HashOlustur.md5HashOlustur(user.sifre);
+            String sifreHash = HashOlustur.md5HashOlustur(user.getSifre());
 
-            preparedStatement.setString(1, user.username);
-            preparedStatement.setString(2, user.isim);
-            preparedStatement.setString(3, user.soyisim);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getIsim());
+            preparedStatement.setString(3, user.getSoyisim());
             preparedStatement.setString(4, sifreHash);
 
             //Son olarak kullancı oluşturma işlemimizi sqlde çalıştıralım
@@ -56,17 +56,19 @@ public class VeriTabanIslemler {
 
     public static int girisYap(User user) {
         try(Connection connection = veritabanaBaglan()){
+            if(user.getUsername()=="" | user.getSifre()=="")
+                return 10;
             PreparedStatement preparedStatement;
             String sql = "SELECT sifreHash FROM users WHERE username = ?";
 
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,user.username);
+            preparedStatement.setString(1,user.getUsername());
 
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             String veridekiHash = rs.getString("sifreHash");
 
-            String sifreHash = HashOlustur.md5HashOlustur(user.sifre);
+            String sifreHash = HashOlustur.md5HashOlustur(user.getSifre());
             if (veridekiHash.equals(sifreHash)){
                 System.out.println("Giris Basarili");
                 return 11;
@@ -92,6 +94,7 @@ public class VeriTabanIslemler {
             preparedStatementInsert.setString(2, mesaj.getMesaj());
             preparedStatementInsert.setObject(3, LocalDateTime.now());
             int rowsAffected = preparedStatementInsert.executeUpdate();
+            System.out.println("mesaj oluşturuldu");
 
             PreparedStatement preparedStatementSelect;
             String sql1 = "SELECT id, gonderici, mesaj, time FROM messages WHERE gonderici = ? AND mesaj = ? ORDER BY time DESC LIMIT 1";

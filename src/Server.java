@@ -74,7 +74,7 @@ public class Server {
                     while ((inputLine = (String)in.readObject()) != null)
                     try{
                         //İlk önce kullancının girip girmemiş olduğundan emin olalım
-                        if (loginOlduMu !=0 ){
+                        if (loginOlduMu == 11 ){
                             Gonderi istek = SifrelemeServer.cevir(inputLine);
                             System.out.println(istek.getMesaj().getMesaj());
 
@@ -103,11 +103,12 @@ public class Server {
                             User user = SifrelemeServer.userCevir(inputLine);
 
                             //İsteyiciden gelen Kullancı varMı bilgisine göre kullancı ya üye olur ya giriş yapar
-                            if(user.varMi){
+                            if(user.getVarMi()){
                                 Gonderi gonderi = new Gonderi(1,null);
                                 gonderi.setResponseCode(VeriTabanIslemler.girisYap(user));
                                 System.out.println("oldu");
                                 sendMessage(gonderi);
+                                loginOlduMu = gonderi.getResponseCode();
 
                             }
                             else {
