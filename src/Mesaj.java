@@ -34,7 +34,9 @@ public class Mesaj implements Serializable {
         return mesaj;
     }
 
-
+    public LocalDateTime getTime() {
+        return time;
+    }
 
 
 }
