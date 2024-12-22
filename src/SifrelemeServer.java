@@ -10,17 +10,19 @@ public class SifrelemeServer {
     private static Properties prop = ConfigHandler.use();
 
     private static final String SECRET_KEY = prop.getProperty("SECRET_KEY","");
+
+    //Gonderi nesneleri şifrelemek için metodtur
     public static String sifrele(Gonderi gonderi){
         try {
-            // Convert the user object to a byte array
+            // Gonderi nesneyi bayt diziye çevirelim
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             objectOutputStream.writeObject(gonderi);
 
-            // Encode the byte array to Base64
+            // bayt diziyi base64 şeklinde kodlayalım
             String base64Encoded = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
 
-            // Encrypt the Base64-encoded string
+            // base64 diziyi şifreyelim
             return AESUtil.encrypt(base64Encoded, SECRET_KEY);
         } catch (Exception e) {
             e.printStackTrace();
@@ -28,17 +30,16 @@ public class SifrelemeServer {
         }
     }
 
-
-
+    //Şifrelenmiş gönderi nesneleri çözmek için kullanılan metodtur
     public static Gonderi cevir(String sifrelenmisVeri){
         try {
-            // Decrypt the encrypted string
+            // Şifrelenmiş veriyi çözelim
             String decryptedBase64 = AESUtil.decrypt(sifrelenmisVeri, SECRET_KEY);
 
-            // Decode the Base64 string back to bytes
+            // Base64 kodtan bayt diziye de çevirelim
             byte[] decryptedBytes = Base64.getDecoder().decode(decryptedBase64);
 
-            // Convert the byte array back into a User object
+            //Bayt diziyi tekrar gönderi nesneye çevirelim ve döndürelim
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(decryptedBytes);
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 
@@ -49,15 +50,16 @@ public class SifrelemeServer {
         }
     }
 
+    //Şifrelenmiş user nesneleri çözmek için kullanılan metodtur
     public static User userCevir(String sifrelenmisVeri){
         try {
-            // Decrypt the encrypted string
+            // Şifrelenmiş veriyi çözelim
             String decryptedBase64 = AESUtil.decrypt(sifrelenmisVeri, SECRET_KEY);
 
-            // Decode the Base64 string back to bytes
+            // Base64 kodtan bayt diziye de çevirelim
             byte[] decryptedBytes = Base64.getDecoder().decode(decryptedBase64);
 
-            // Convert the byte array back into a User object
+            //Bayt diziyi tekrar user nesneye çevirelim ve döndürelim
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(decryptedBytes);
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 
