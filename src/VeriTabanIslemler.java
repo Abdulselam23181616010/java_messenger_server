@@ -3,16 +3,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 //VeriTabanConnector adındaki sınıf sunucumuzun veritabanla iletişime geçmesini sağlar
 public class VeriTabanIslemler {
+    //Hassas içerikleri config filedan çekelim
+    private static Properties  prop = ConfigHandler.use();
 
     //Diğer metodlarda kullanacağımız private bir metodtur. Bununla veri tabana bağlamamızı sağlarız
     private static Connection veritabanaBaglan() throws SQLException {
         // Alttaki değerlerle sql kutuphanesindn aldığımız Connection sınıfından nesneyle veritabana bağlanalım
-        String url = "jdbc:mysql://localhost:3306/messenger?autoReconnect=true&useSSL=false";
-        String dbUsername = "root";
-        String password = "test123";
+        String url = prop.getProperty("DB_URL","");
+        String dbUsername = prop.getProperty("DB_USER","");
+        String password = prop.getProperty("DB_PASSWORD","");
 
         Connection connection = DriverManager.getConnection(url, dbUsername, password);
         //Bağlantıyı dondurelim

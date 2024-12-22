@@ -1,5 +1,6 @@
 import java.io.Serializable;
 
+//Çok kullanacağımız kullancı bilgileri bir nesnede saklamak için User sınıfını oluşturalım
 public class User implements Serializable {
     private String username;
     private String sifre;
@@ -7,7 +8,7 @@ public class User implements Serializable {
     private String soyisim;
     private Boolean varMi;
 
-    //İki türde constructor oluşturalım
+    //İki türde constructor oluşturalım.Biri girisYap() diğeri uyeOl() metodları içindir.
     public User(String username, String sifre){
         this.username = username;
         this.sifre = sifre;

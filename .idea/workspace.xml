@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="formated date time eklendi">
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi">
+      <change afterPath="$PROJECT_DIR$/src/ConfigHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/git.ignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SifrelemeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SifrelemeServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VeriTabanIslemler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VeriTabanIslemler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734873952423</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi">
+      <option name="closed" value="true" />
+      <created>1734877774960</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734877774960</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,7 +205,8 @@
     <MESSAGE value="looplar düzeltildi" />
     <MESSAGE value="username ve sifre null hatası duzeltildi&#10;usera encapsulation uygulandı" />
     <MESSAGE value="formated date time eklendi" />
-    <option name="LAST_COMMIT_MESSAGE" value="formated date time eklendi" />
+    <MESSAGE value="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi" />
+    <option name="LAST_COMMIT_MESSAGE" value="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

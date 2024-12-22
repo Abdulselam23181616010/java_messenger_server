@@ -3,9 +3,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Base64;
+import java.util.Properties;
 
 public class SifrelemeServer {
-    private static final String SECRET_KEY = "5ROIfv7Sf0nK9RfeqIkhtC6378OiR5E0VyTnjmXejY0=";
+    //Hassas içerikleri config filedan çekelim
+    private static Properties prop = ConfigHandler.use();
+
+    private static final String SECRET_KEY = prop.getProperty("SECRET_KEY","");
     public static String sifrele(Gonderi gonderi){
         try {
             // Convert the user object to a byte array
