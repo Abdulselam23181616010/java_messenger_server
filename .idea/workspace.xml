@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="SifrelenmeServer sınıfın yorum satırları düzeltildi">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="Server sınıfında yorum satırlar güncellendi">
+      <change beforePath="$PROJECT_DIR$/src/Mesaj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mesaj.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734879107179</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Server sınıfında yorum satırlar güncellendi">
+      <option name="closed" value="true" />
+      <created>1734896540966</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1734896540966</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,7 +226,8 @@
     <MESSAGE value="fVeriTabanSınıftaki onemli olmayan kontrol kodları silindi ve yorum satılar güncellendi" />
     <MESSAGE value="config file desteği sunuldu sifrelenmeServer ve VeriTabanIslemler sınıfları ona göre ayarlandı. User sınıfın orum satırları duzeltildi" />
     <MESSAGE value="SifrelenmeServer sınıfın yorum satırları düzeltildi" />
-    <option name="LAST_COMMIT_MESSAGE" value="SifrelenmeServer sınıfın yorum satırları düzeltildi" />
+    <MESSAGE value="Server sınıfında yorum satırlar güncellendi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Server sınıfında yorum satırlar güncellendi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
