@@ -30,7 +30,7 @@ public class Server {
 
 
     // Tum kullancılara mesajı göndermek için metod oluşturalım
-    public static void broadcast(Response gonderi, ClientHandler sender) {
+    public static void broadcast(Gonderi gonderi, ClientHandler sender) {
         for (ClientHandler client : clients) {
             if (client != sender) {
                 try {
@@ -68,64 +68,80 @@ public class Server {
         // Kullancı ile iletişim için run() metodu
         @Override
         public void run() {
-            try {
-                //İlk önce kullancının girip girmemiş olduğundan emin olalım
-                int loginOlduMu = 0;
-                try{
-                    String inputLine = (String) in.readObject();
-                    User user = SifrelemeServer.userCevir(inputLine);
-                    if(user.varMi)
-                        loginOlduMu = VeriTabanIslemler.girisYap(user);
-                    else
-                        VeriTabanIslemler.kullanciOlustur(user);
-                    if (loginOlduMu==1){
-                        String inputLine1 = (String) in.readObject();
-                        Gonderi istek = SifrelemeServer.cevir(inputLine1);
-                        RequestSolver istekCozucu = (RequestSolver)istek;
-                        Response donus = (Response)istek;
+            int loginOlduMu = 0;
+                try {
+                    try{
+                        //İlk önce kullancının girip girmemiş olduğundan emin olalım
+                        if (loginOlduMu!=0){
+                            String inputLine1 = (String) in.readObject();
+                            Gonderi istek = SifrelemeServer.cevir(inputLine1);
+                            System.out.println(istek.getMesaj().getMesaj());
 
-                        // İstemciden gönderi almayı devam et
-                        while (istekCozucu != null) {
-                            // Mesaj varsa bunu tum kullancılara gonderelim
-                            if (istekCozucu.requestType == 3 & istekCozucu.mesaj != null)
-                                broadcast(donus, this);
+                            // İstemciden gönderi almayı devam et
+                            while (istek != null) {
+                                // Mesaj varsa bunu tum kullancılara gonderelim
+                                if (istek.getRequestType() == 3 & istek.getMesaj() != null){
+                                    Mesaj mesaj = VeriTabanIslemler.mesajEkle(istek.getMesaj());
+                                    istek.setMesaj(mesaj);
+                                    istek.setResponseCode(31);
+                                    broadcast(istek, this);
 
-                            //Geçmiş yuklemek isteniyorsa geçmişi diziye saklayıp tek tek gönderelim
-                            if (istekCozucu.requestType == 4){
-                                List<Mesaj> mesajlar = VeriTabanIslemler.getAllMessages();
-                                for (Mesaj mesaj: mesajlar){
-                                    Response response = new Response(4,mesaj);
-                                    response.setResponseCode(31);
-                                    sendMessage(response);
+                                }
+
+                                //Geçmiş yuklemek isteniyorsa geçmişi diziye saklayıp tek tek gönderelim
+                                if (istek.getRequestType() == 4){
+                                    List<Mesaj> mesajlar = VeriTabanIslemler.getAllMessages();
+                                    for (Mesaj mesaj: mesajlar){
+                                        Gonderi gonderi = new Gonderi(4,mesaj);
+                                        gonderi.setResponseCode(31);
+                                        sendMessage(gonderi);
+                                    }
+
                                 }
 
                             }
+
                         }
+                        else{
+                            String inputLine = (String) in.readObject();
+                            User user = SifrelemeServer.userCevir(inputLine);
 
-                    }
-                    else{
-                        Response response = new Response(2,null);
-                        response.setResponseCode(20);
-                        sendMessage(response);
+                            //İsteyiciden gelen Kullancı varMı bilgisine göre kullancı ya üye olur ya giriş yapar
+                            if(user.varMi){
+                                loginOlduMu = VeriTabanIslemler.girisYap(user);
+                                System.out.println(loginOlduMu);
+
+                                //Giriş yapıldıysa olumlu response gönderelim
+                                if(loginOlduMu==11) {
+                                    Response response = new Response(1,null);
+                                    response.setResponseCode(11);
+                                    sendMessage(response);
+                                }
+                            }
+                            else
+                                VeriTabanIslemler.kullanciOlustur(user);
+
+
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        // Remove the client handler from the list
+                        clients.remove(this);
+
+                        // Close the input and output streams and the client socket
+                        in.close();
+                        out.close();
+                        clientSocket.close();
                     }
 
-                }catch (Exception e){
+                } catch (IOException  e) {
                     e.printStackTrace();
-                    // Remove the client handler from the list
-                    clients.remove(this);
-
-                    // Close the input and output streams and the client socket
-                    in.close();
-                    out.close();
-                    clientSocket.close();
                 }
-
-            } catch (IOException  e) {
-                e.printStackTrace();
             }
-        }
-        public void sendMessage(Response response) throws IOException {
-            String responseString = SifrelemeServer.sifrele(response);
+
+
+        public void sendMessage(Gonderi gonderi) throws IOException {
+            String responseString = SifrelemeServer.sifrele(gonderi);
             out.writeObject(responseString);
 
         }

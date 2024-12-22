@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class VeriTabanIslemler {
             }
             //SQL injection'dan korunmak için PreparedStatement kullanalım
             PreparedStatement preparedStatement;
-            String sql = "INSERT INTO users (username, isim, soyisim, sifre) VALUES (?, ?, ?, ? )";
+            String sql = "INSERT INTO users (username, isim, soyisim, sifreHash) VALUES (?, ?, ?, ? )";
 
             // Log the connection state before query execution
             System.out.println("Preparing to execute query with connection: " + (connection.isClosed() ? "Closed" : "Open"));
@@ -43,40 +44,35 @@ public class VeriTabanIslemler {
             System.out.println("Kullanci olusturuldu");
 
             //Her şey sorunsuz olursa ve kullancımız oluşturursa 1 donelim
-            return 1;
+            return 21;
 
         } catch (Exception e) {
-            //Hata oluşursa hata mesajını yazdırıp 0 donelim
+            //Hata oluşursa hata mesajını yazdırıp hata kodunu döndürelim
             e.printStackTrace();
-            return 0;
+            return 20;
 
         }
     }
 
     public static int girisYap(User user) {
         try(Connection connection = veritabanaBaglan()){
-            if (connection.isClosed()){
-                System.out.println("Baglantı yok");
-                return 0;
-            }
-
             PreparedStatement preparedStatement;
-            String sql = "SELECT sifre FROM users WHERE username = ?";
+            String sql = "SELECT sifreHash FROM users WHERE username = ?";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,user.username);
 
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
-            String veridekiHash = rs.getString("sifre");
+            String veridekiHash = rs.getString("sifreHash");
 
             String sifreHash = HashOlustur.md5HashOlustur(user.sifre);
             if (veridekiHash.equals(sifreHash)){
                 System.out.println("Giris Basarili");
-                return 1;
+                return 11;
             }
             else
-                return 0;
+                return 10;
 
         } catch (Exception e){
             e.printStackTrace();
@@ -84,6 +80,40 @@ public class VeriTabanIslemler {
 
         }
 
+    }
+
+    public static Mesaj mesajEkle(Mesaj mesaj){
+        try(Connection connection = veritabanaBaglan()){
+            PreparedStatement preparedStatementInsert;
+            String sql =  "INSERT INTO messages (gonderici, mesaj,time) VALUES (?, ?, ?) ";
+
+            preparedStatementInsert = connection.prepareStatement(sql);
+            preparedStatementInsert.setString(1, mesaj.getGonderici());
+            preparedStatementInsert.setString(2, mesaj.getMesaj());
+            preparedStatementInsert.setObject(3, LocalDateTime.now());
+            int rowsAffected = preparedStatementInsert.executeUpdate();
+
+            PreparedStatement preparedStatementSelect;
+            String sql1 = "SELECT id, gonderici, mesaj, time FROM messages WHERE gonderici = ? AND mesaj = ? ORDER BY time DESC LIMIT 1";
+
+            preparedStatementSelect = connection.prepareStatement(sql1);
+            preparedStatementSelect.setString(1, mesaj.getGonderici());
+            preparedStatementSelect.setString(2, mesaj.getMesaj());
+            ResultSet rs = preparedStatementSelect.executeQuery();
+
+            rs.next();
+
+            int id = rs.getInt("id");
+            String gonderici = rs.getString("gonderici");
+            String string = rs.getString("mesaj");
+            LocalDateTime time = rs.getObject("time",LocalDateTime.class);
+            return new Mesaj(id,gonderici,string,time);
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     //Gecmişi yuklemek için Veritabandan tum mesajları isteyiciye göndereceğiz
@@ -100,7 +130,7 @@ public class VeriTabanIslemler {
                 int id = resultSet.getInt("id");
                 String gonderici = resultSet.getString("gonderici");
                 String mesaj = resultSet.getString("mesaj");
-                Timestamp time = resultSet.getTimestamp("time");
+                LocalDateTime time = resultSet.getObject("time", LocalDateTime.class);
 
                 // Create a Message object and add it to the list
                 messages.add(new Mesaj(id, gonderici, mesaj, time));

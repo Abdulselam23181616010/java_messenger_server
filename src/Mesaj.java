@@ -1,21 +1,23 @@
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
-public class Mesaj {
+public class Mesaj implements Serializable {
+    private static final long serialVersionUID = 7818547970534850237L;
     private int id;
     private String gonderici;
-    private String message;
-    private Timestamp timestamp;
+    private String mesaj;
+    private LocalDateTime time;
 
-    public Mesaj(int id, String gonderici, String message, Timestamp timestamp) {
+    public Mesaj(int id, String gonderici, String mesaj, LocalDateTime time) {
         this.id = id;
         this.gonderici = gonderici;
-        this.message = message;
-        this.timestamp = timestamp;
+        this.mesaj = mesaj;
+        this.time = time;
     }
 
-    public Mesaj(String gonderici, String message){
+    public Mesaj(String gonderici, String mesaj){
         this.gonderici = gonderici;
-        this.message = message;
+        this.mesaj = mesaj;
 
     }
 
@@ -23,8 +25,8 @@ public class Mesaj {
         return gonderici;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMesaj() {
+        return mesaj;
     }
 
 

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="uğdated server user classes added secure key for now">
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="Mesaj constructor, getterler eklendi&#10;Server cevap verme şkli değiştirildi&#10;getAllMessages() metoduna yorum klwndi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gonderi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gonderi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mesaj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mesaj.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SifrelemeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SifrelemeServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VeriTabanIslemler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VeriTabanIslemler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734826276669</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Mesaj constructor, getterler eklendi&#10;Server cevap verme şkli değiştirildi&#10;getAllMessages() metoduna yorum klwndi">
+      <option name="closed" value="true" />
+      <created>1734831501706</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734831501706</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,7 +128,8 @@
     <MESSAGE value="girisYap ve kullanciOlustur parametreli usera donusturuldu, login page için dongu oluşturuldu" />
     <MESSAGE value="Gereksiz monocast( metodu silindi yerine sendMesssage kullanıldı User sınıfına varMı eklendi login mi uye ol mu çalışacak belirtmemize yardımcı olur" />
     <MESSAGE value="uğdated server user classes added secure key for now" />
-    <option name="LAST_COMMIT_MESSAGE" value="uğdated server user classes added secure key for now" />
+    <MESSAGE value="Mesaj constructor, getterler eklendi&#10;Server cevap verme şkli değiştirildi&#10;getAllMessages() metoduna yorum klwndi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mesaj constructor, getterler eklendi&#10;Server cevap verme şkli değiştirildi&#10;getAllMessages() metoduna yorum klwndi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -138,6 +149,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.io.StreamCorruptedException" package="java.io" />
           <option name="timeStamp" value="4" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="5" />
         </breakpoint>
       </breakpoints>
       <default-breakpoints>
