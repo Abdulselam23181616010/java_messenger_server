@@ -1,6 +1,9 @@
 import java.io.Serializable;
 
+//Sunucu ile istemci arasında gidip gelen nesneleri bu sınıftan oluşturalım.Byte dönüşümğ için serializable interface kullanacağız
 public class Gonderi implements Serializable {
+
+    //karşı taraf ile sınıf uyuşmamazlığını yaşatmamak adına ID'sini belirtelim
     private static final long serialVersionUID = 8185736556051931014L;
     private int requestType;
     private Mesaj mesaj;
@@ -13,6 +16,7 @@ public class Gonderi implements Serializable {
 
     }
 
+    //gerekli olan setter ve getterleri de oluşturalım
      public void setResponseCode(int responseCode){
         this.responseCode = responseCode;
     }

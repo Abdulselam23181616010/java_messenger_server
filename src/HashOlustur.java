@@ -1,6 +1,7 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+//Şifreleri güvenlik amaçlı açık halde saklamak önerilmiyor bu yüzden onları basit bir hash şeklinde saklamak için bu metodu oluşturalım
 abstract public class HashOlustur {
     public static String md5HashOlustur(String girdi) {
         try {

@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.Properties;
 
+//hassas içerikleri direk koda yazmamak lazım onları config dosyaysında saklayalım. Ordaki verilere ulaşmak için de bu sınıf lazım
 public class ConfigHandler {
-
     public static Properties use() {
         try {
             String configFilePath = "src/config.properties";

@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="Server sınıfında yorum satırlar güncellendi">
-      <change beforePath="$PROJECT_DIR$/src/Mesaj.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mesaj.java" afterDir="false" />
+    <list default="true" id="ec1a8da1-4ed4-4a53-8b87-c18ecbad4a2d" name="Changes" comment="Mesaj sınıfına yorum satırlar eklendi">
+      <change beforePath="$PROJECT_DIR$/src/AESUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AESUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConfigHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConfigHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gonderi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gonderi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HashOlustur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HashOlustur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734896540966</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Mesaj sınıfına yorum satırlar eklendi">
+      <option name="closed" value="true" />
+      <created>1734896814521</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1734896814521</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,7 +240,8 @@
     <MESSAGE value="config file desteği sunuldu sifrelenmeServer ve VeriTabanIslemler sınıfları ona göre ayarlandı. User sınıfın orum satırları duzeltildi" />
     <MESSAGE value="SifrelenmeServer sınıfın yorum satırları düzeltildi" />
     <MESSAGE value="Server sınıfında yorum satırlar güncellendi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Server sınıfında yorum satırlar güncellendi" />
+    <MESSAGE value="Mesaj sınıfına yorum satırlar eklendi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mesaj sınıfına yorum satırlar eklendi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

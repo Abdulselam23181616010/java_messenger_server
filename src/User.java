@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-//Çok kullanacağımız kullancı bilgileri bir nesnede saklamak için User sınıfını oluşturalım
+//Çok kullanacağımız kullancı bilgileri bir nesnede saklamak için User sınıfını oluşturalım.Byte dönüşümğ için serializable interface kullanacağız
 public class User implements Serializable {
     private String username;
     private String sifre;
